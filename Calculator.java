@@ -43,7 +43,7 @@ public class Calculator {
                     continue;
                 }
                 float res = this.operate(num1, num2, choice);
-                System.out.println("result is: " + res + "\n");
+                System.out.println("result is: " + res + " \n");
             }
         
             //break;
