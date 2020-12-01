@@ -1,5 +1,3 @@
-package calc;
-
 /**
  * Name of the file: Calculator.java
  * Name: Saman Nabavi
@@ -16,19 +14,9 @@ public class Calculator {
 	int choice = 0; // what operation to do
 	float num1 = 0, num2 = 0; // user's two numbers
 
-	/**
-	 * Name : Calculator 
-	 * @param : None 
-	 * Explanation: A simple constructor that just run
-	 * the method runTheCalc()
-	 */
-	public Calculator() {
 
-		this.runTheCalc();
 
-	}
-
-	/**
+    /**
 	 * Name : runTheCalc 
 	 * @param : None 
 	 * @return : void 
@@ -157,6 +145,7 @@ public class Calculator {
 	public static void main(String[] args) {
 
 		Calculator calc = new Calculator();
+        calc.runTheCalc();
 		System.out.println("--------DONE--------");
 
 	}
