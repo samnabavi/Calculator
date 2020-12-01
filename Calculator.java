@@ -1,118 +1,164 @@
+package calc;
+
+/**
+ * Name of the file: Calculator.java
+ * Name: Saman Nabavi
+ * Explanation: A simple calculator that recieves two number from the user
+ *              and the operation to do on them, then prints the result
+ */
+
 import java.util.Scanner;
+import java.lang.ArithmeticException;
 
 public class Calculator {
 
-  private Scanner scan;
-  int choice = 0;
-  float num1 = 0, num2 = 0;
+	private Scanner scan; // for getting the input from user
+	int choice = 0; // what operation to do
+	float num1 = 0, num2 = 0; // user's two numbers
 
-  public Calculator() {
+	/**
+	 * Name : Calculator 
+	 * @param : None 
+	 * Explanation: A simple constructor that just run
+	 * the method runTheCalc()
+	 */
+	public Calculator() {
 
-    this.runTheCalc();
+		this.runTheCalc();
 
-  }
+	}
 
-  public void runTheCalc() {
+	/**
+	 * Name : runTheCalc 
+	 * @param : None 
+	 * @return : void 
+	 * Explanation: Gets the user input
+	 * and uses operate method to perform an operation on the inputs
+	 */
+	public void runTheCalc() {
 
-    
-    while(true) {
+		while (true) {
 
-        boolean check  = this.operationRequest();
-        if( check == true ) {
-            if( choice == 5 ) {
-                break;
-            } else {
+			boolean check = this.operationRequest();// user's operator was successfully recieved
+			if (check == true) {
+				if (choice == 5) { // exit from the program
+					break;
+				} else {
 
-                System.out.println("Enter your two numbers.");
-                try {
-                    num1 = scan.nextFloat();
-                    try {
-                        num2 = scan.nextFloat();
-                    } catch( Exception e) {
-                        System.err.println("Wrong input. Try again. \n");
-                        continue;
-                    
-                    }
-                } catch(Exception e) {
-                    System.err.println("Wrong input. Enter again. \n");
-                    continue;
-                }
+					System.out.println("Enter your two numbers.");
+					try {
+						num1 = scan.nextFloat();
+						try {
+							num2 = scan.nextFloat();
+						} catch (Exception e) {
+							System.err.println("Wrong input. Try again. \n");
+							continue;
 
-                if( num2 == 0 && choice == 4 ) {
-                    System.err.println("Cannot divide by zero. Try again. \n");
-                    continue;
-                }
-                float res = this.operate(num1, num2, choice);
-                System.out.println("result is: " + res + " \n");
-            }
-        
-            //break;
-        }
-    }
+						}
+					} catch (Exception e) {
+						System.err.println("Wrong input. Try again. \n");
+						continue;
+					}
 
-  }
+					float res = this.operate(num1, num2, choice);
+					System.out.println("result is: " + res + " \n");
 
-  public boolean operationRequest() {
+				}
 
-    this.resetSettings();
-    System.out.println("Please follow the instruction");
-    System.out.println("Press 1 for addition");
-    System.out.println("Press 2 for subtraction");
-    System.out.println("Press 3 for multipication");
-    System.out.println("Press 4 for division");
-    System.out.println("Press 5 for exit");
-    try {
-        this.choice = scan.nextInt();
-    } catch(Exception e) {
+				// break;
+			}
+		}
 
-        System.err.println("Wrong Input.");
-        System.err.println("Please try again. ");
-        System.err.println("");
-        this.resetSettings();
-        return false;
-        //this.operationRequest();
+	}
 
-    } 
-    if( choice > 5) {
-      System.err.println("Wrong Input.");
-      System.err.println("Please try again. ");
-      System.err.println("");
-      this.resetSettings();
-      return false;
-    }
+	/**
+	 * Name : operationRequest 
+	 * @param : None
+	 * @return : boolean, indicates if user correctly followed the instructions
+	 * Explanation: This method resets the settings and ask the user for the which
+	 *              operation to do. It catches all wrong inputs. If the user's 
+	 *              inputs are correct, it returns True, and False otherwise.
+	 */
+	public boolean operationRequest() {
 
-    return true;
- 
+		this.resetSettings();
+		System.out.println("Please follow the instruction");
+		System.out.println("Press 1 for addition");
+		System.out.println("Press 2 for subtraction");
+		System.out.println("Press 3 for multipication");
+		System.out.println("Press 4 for division");
+		System.out.println("Press 5 for exit");
+		try {
+			this.choice = scan.nextInt();
+		} catch (Exception e) {
 
-  }
+			System.err.println("Wrong Input.");
+			System.err.println("Please try again. ");
+			System.err.println("");
+			this.resetSettings();
+			return false;
+			// this.operationRequest();
 
-  public void resetSettings() {
-    
-    num1 = 0;
-    num2 = 0;
-    choice = 0;
-    scan = new Scanner(System.in);
+		}
+		if (choice > 5) {
+			System.err.println("Wrong Input.");
+			System.err.println("Please try again. ");
+			System.err.println("");
+			this.resetSettings();
+			return false;
+		}
 
-  }
-  
-  public float operate(float num1, float num2, int choice) {
+		return true;
 
-    if( choice == 1 ) { return num1+num2; }
-    else if( choice == 2 ) { return num1-num2; }
-    else if( choice == 3 ) { return num1*num2; }
-    else { return num1/num2; }
+	}
 
-  }
+	/**
+	 * Name: resetSettings
+	 * @param : None
+	 * @return : void
+	 * Explanation: It resets our default values to get the new ones later
+	 */
+	public void resetSettings() {
 
+		num1 = 0;
+		num2 = 0;
+		choice = 0;
+		scan = new Scanner(System.in);
 
-  public static void main(String[] args) {
+	}
 
-    Calculator calc = new Calculator();
-    System.out.println("DONE");
-    
-  }
+	/**
+	 * Name : operate 
+	 * @param num1 : float, first input
+	 * @param num2 : float, second input
+	 * @param choice : int, indicates the operation
+	 * @return : float, the result of the operation
+	 */
+	public float operate(float num1, float num2, int choice) {
 
+		if (choice == 1) {
+			return num1 + num2;
+		} else if (choice == 2) {
+			return num1 - num2;
+		} else if ( choice == 3) {
+			return num1 * num2;
+		} else {
+			return num1 / num2;
+		}
 
+	}
 
+	/**
+	 * Name: main
+	 * @param args : no params needed
+	 * @return : void
+	 * Explanation : It just new a Calculator object.  
+	 */
+	public static void main(String[] args) {
+
+		Calculator calc = new Calculator();
+		System.out.println("--------DONE--------");
+
+	}
 
 }
