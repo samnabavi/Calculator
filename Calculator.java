@@ -1,3 +1,5 @@
+package calc;
+
 /**
  * Name of the file: Calculator.java
  * Name: Saman Nabavi
